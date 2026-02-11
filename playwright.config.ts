@@ -3,16 +3,16 @@ import { defineConfig } from '@playwright/test';
 export default defineConfig({
   testDir: './tests',
 
-  timeout: 120 * 1000, // ✅ CI-safe
+  timeout: 120 * 1000,
   retries: 1,
 
   expect: {
-    timeout: 40 * 1000, // ✅ Stabilizes assertions
+    timeout: 40 * 1000,
   },
 
   use: {
     baseURL: 'https://practicesoftwaretesting.com',
-    headless: true, // ✅ Correct for GitHub Actions
+    headless: false, 
     screenshot: 'only-on-failure',
     trace: process.env.CI ? 'retain-on-failure' : 'on-first-retry',
   },

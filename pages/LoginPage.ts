@@ -5,6 +5,9 @@ export class LoginPage {
 
   async goto() {
     await this.page.goto('/auth/login');
+    // Wait for page to fully load in CI environment
+    await this.page.waitForLoadState('networkidle');
+    await this.page.waitForSelector('[data-test="email"]');
   }
 
   async login(email: string, password: string) {
