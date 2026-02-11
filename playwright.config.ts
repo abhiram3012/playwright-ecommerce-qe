@@ -6,6 +6,10 @@ export default defineConfig({
   timeout: 60 * 1000, // ✅ CI-safe
   retries: 1,
 
+  expect: {
+    timeout: 20 * 1000, // ✅ Stabilizes assertions
+  },
+
   use: {
     baseURL: 'https://practicesoftwaretesting.com',
     headless: true, // ✅ Correct for GitHub Actions
