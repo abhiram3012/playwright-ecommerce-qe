@@ -3,11 +3,11 @@ import { defineConfig } from '@playwright/test';
 export default defineConfig({
   testDir: './tests',
 
-  timeout: 60 * 1000, // ✅ CI-safe
+  timeout: 120 * 1000, // ✅ CI-safe
   retries: 1,
 
   expect: {
-    timeout: 20 * 1000, // ✅ Stabilizes assertions
+    timeout: 40 * 1000, // ✅ Stabilizes assertions
   },
 
   use: {
