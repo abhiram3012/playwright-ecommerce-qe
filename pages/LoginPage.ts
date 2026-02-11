@@ -4,7 +4,7 @@ export class LoginPage {
   constructor(private page: Page) {}
 
   async goto() {
-    await this.page.goto('/auth/login', { waitUntil: 'networkidle' });
+    await this.page.goto('/auth/login');
   }
 
   async login(email: string, password: string) {
