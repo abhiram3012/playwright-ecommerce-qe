@@ -12,7 +12,7 @@ export default defineConfig({
 
   use: {
     baseURL: 'https://practicesoftwaretesting.com',
-    headless: false, 
+    headless: !process.env.CI ? false : true,
     screenshot: 'only-on-failure',
     trace: process.env.CI ? 'retain-on-failure' : 'on-first-retry',
   },
