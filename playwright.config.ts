@@ -6,7 +6,7 @@ export default defineConfig({
   retries: 1,
   use: {
     baseURL: 'https://practicesoftwaretesting.com',
-    headless: false, // visible Chrome
+    headless: true, // visible Chrome
     screenshot: 'only-on-failure',
     trace: 'on-first-retry',
   },
