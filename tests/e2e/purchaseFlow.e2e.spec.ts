@@ -11,18 +11,18 @@ for (const productName of products.products) {
     const productDetailsPage = new ProductDetailsPage(loggedInPage);
     const cartPage = new CartPage(loggedInPage);
 
-    // 1️⃣ Navigate + search (data-driven)
+    // Navigate + search (data-driven)
     await productsPage.goto();
     await productsPage.searchProduct(productName);
     await productsPage.selectFirstProduct();
 
-    // 2️⃣ Prepare to capture CART API call
+    // Prepare to capture CART API call
     const cartResponsePromise = waitForCartResponse(loggedInPage);
 
-    // 3️⃣ UI action
+    // UI action
     await productDetailsPage.addToCart();
 
-    // 4️⃣ BACKEND VALIDATION 🔥
+    // BACKEND VALIDATION 🔥
     const cartResponse = await cartResponsePromise;
     const cartData = await cartResponse.json();
 
@@ -31,7 +31,7 @@ for (const productName of products.products) {
     expect(cartData.result).toBeDefined();
     expect(cartData.result).toContain('item');
 
-    // 5️⃣ Continue UI flow
+    // Continue UI flow
     await cartPage.openCart();
     await cartPage.proceedToCheckout();
 
