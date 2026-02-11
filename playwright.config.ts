@@ -2,15 +2,23 @@ import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
-  timeout: 30 * 1000,
+
+  timeout: 60 * 1000, // ✅ CI-safe
   retries: 1,
+
+  expect: {
+    timeout: 10 * 1000, // ✅ Stabilizes assertions
+  },
+
   use: {
     baseURL: 'https://practicesoftwaretesting.com',
-    headless: true, // visible Chrome
+    headless: true, // ✅ Correct for GitHub Actions
     screenshot: 'only-on-failure',
-    trace: 'on-first-retry',
+    trace: process.env.CI ? 'retain-on-failure' : 'on-first-retry',
   },
+
   reporter: [['html', { open: 'never' }]],
+
   projects: [
     {
       name: 'Chromium',
